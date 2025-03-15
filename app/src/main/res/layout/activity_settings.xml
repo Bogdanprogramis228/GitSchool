@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fon"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/settings_back"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/strilka"
+            android:background="@drawable/nav_back"
+            android:text="@string/menu_settingsSL"/>
+
+        <!-- Блок персональної інформації -->
+        <TextView
+            android:layout_width="338dp"
+            android:layout_height="40dp"
+            android:text="@string/person_info"
+            android:textSize="14sp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/white"
+            android:gravity="center|left"
+            android:background="@drawable/element_set"
+            android:layout_marginTop="16dp"/>
+
+        <LinearLayout
+            android:layout_width="338dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:text="@string/name"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                />
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="204dp"
+                android:layout_height="38dp"
+                android:background="@drawable/unblock_background"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="20dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="338dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:text="@string/email"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                />
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="204dp"
+                android:layout_height="38dp"
+                android:background="@drawable/unblock_background"
+                android:inputType="textEmailAddress"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="20dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="338dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:text="@string/password"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                />
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="204dp"
+                android:layout_height="38dp"
+                android:background="@drawable/unblock_background"
+                android:inputType="textPassword"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="20dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="338dp"
+            android:layout_height="15dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/element_set"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Блок соцмереж -->
+        <TextView
+            android:layout_width="338dp"
+            android:layout_height="40dp"
+            android:text="@string/social_networks"
+            android:textSize="14sp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/white"
+            android:gravity="center|left"
+            android:background="@drawable/element_set"
+            android:layout_marginTop="16dp"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/buttonUnlinkGoogle"
+            android:layout_width="204dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/block_background"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- Іконка Google -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/google" />
+
+            <!-- Текст кнопки -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/untie"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/buttonLinkDiscord"
+            android:layout_width="204dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/unblock_background"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- Іконка Google -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/discord" />
+
+            <!-- Текст кнопки -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tie_up"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/buttonLinkTelegram"
+            android:layout_width="204dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/unblock_background"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- Іконка Google -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/telegram" />
+
+            <!-- Текст кнопки -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tie_up"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:layout_width="338dp"
+            android:layout_height="15dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/element_set"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Кнопки оновлення та видалення -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/buttonUpdate"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/update_data"
+                android:backgroundTint="@color/button02"
+                android:textColor="#ffffff"/>
+
+            <Button
+                android:id="@+id/buttonDelete"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_ak"
+                android:backgroundTint="#ff4444"
+                android:textColor="#ffffff"
+                android:layout_marginStart="8dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

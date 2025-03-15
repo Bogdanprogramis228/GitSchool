@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/fon"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <!-- Toolbar -->
+    <TextView
+        android:id="@+id/toolbar"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_gravity="center|top"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/strilka"
+        android:background="@drawable/nav_back"
+        android:text="Щоденик"
+        />
+
+    <!-- Основна частина екрану -->
+    <LinearLayout
+        android:id="@+id/content_layout"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:layout_gravity="center|top"
+        android:gravity="center"
+        >
+
+    <LinearLayout
+        android:id="@+id/content_layout_find"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="@drawable/element_set">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="190dp"
+            android:layout_height="35dp"
+            android:textColor="@color/black"
+            android:background="@drawable/unblock_background"
+            android:queryHint="Пошук..."
+            />
+
+        <Spinner
+            android:id="@+id/status_filter"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:background="@drawable/unblock_background"
+            />
+    </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_homework"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />
+
+
+    </LinearLayout>
+
+    <!-- FAB для додавання нового завдання -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_homework"
+        app:layout_anchor="@id/recycler_view_homework"
+        app:layout_anchorGravity="bottom|end" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

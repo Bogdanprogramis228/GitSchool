@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Інші метадані для Google Sign-In -->
+    <meta-data
+        android:name="com.google.android.gms.auth.api.credentials.SignInActivity"
+        android:value="true" />
+    <meta-data
+        android:name="com.google.android.gms.auth.api.signin.GoogleSignInOptions"
+        android:value="@string/client_id" />
+    <meta-data
+        android:name="com.google.firebase.auth.api_key"
+        android:value="@string/google_api_key" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.READ_CLIPBOARD" />
+    <uses-permission android:name="android.permission.WRITE_CLIPBOARD" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GitSchool"
+        tools:targetApi="31">
+
+        <!-- Активності -->
+        <activity
+            android:name=".SecondActivity"
+            android:exported="true"
+            android:theme="@style/Theme.GitSchool.NoActionBar" />
+        <activity android:name=".LoginActivity" android:exported="true" />
+        <activity android:name=".RegisterActivity" android:exported="true" />
+        <activity android:name=".AdminActivity" android:exported="true" />
+        <activity android:name=".SettingsActivity" android:exported="true" />
+        <activity android:name=".ProfileActivity" android:exported="true" />
+        <activity android:name=".ScheduleActivity" android:exported="true" />
+        <activity android:name=".HomeworkActivity" android:exported="true" />
+        <activity android:name=".JournalActivity" android:exported="true" />
+        <activity android:name=".CafeteriaActivity" android:exported="true" />
+
+        <activity android:name=".LibraryActivity" android:exported="true" />
+        <activity android:name=".BooksActivity" android:exported="true" />
+        <activity android:name=".PdfReaderActivity" android:exported="true" />
+
+
+        <!-- Splash screen (головна активність) -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Налаштування для інтеграції з Google Sign-In -->
+        <activity
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+            android:label="@string/login"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
+    </application>
+
+</manifest>

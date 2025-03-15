@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "758018434687",
+    "project_id": "gitschool-9eede",
+    "storage_bucket": "gitschool-9eede.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758018434687:android:9c806e4cf12c649278014a",
+        "android_client_info": {
+          "package_name": "com.example.gitschool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758018434687-otuk9g94sl1vjf41pdblkcbpava7me2v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gitschool",
+            "certificate_hash": "ace46e179928abd278121994a6c12fa1f6b64855"
+          }
+        },
+        {
+          "client_id": "758018434687-dcatio3tf20pu2bo7vpmmha0vd1tv5lh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk7_wI43PeUXCEhjgVxoxWCQdnAl2eQ8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758018434687-dcatio3tf20pu2bo7vpmmha0vd1tv5lh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

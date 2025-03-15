@@ -1,0 +1,55 @@
+<!-- item_horizontal.xml -->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="175dp"
+    android:layout_height="268dp"
+    android:layout_margin="8dp"
+    android:elevation="4dp"
+    android:radius="8dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Фон: фото аніме -->
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="match_parent"
+            android:layout_height="238dp"
+            android:scaleType="centerCrop"/>
+
+        <!-- Інформація: заголовок, опис тощо -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            >
+
+            <!-- Назва аніме -->
+            <TextView
+                android:id="@+id/item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <!-- Інша інформація (наприклад, рік випуску, рейтинг) -->
+            <TextView
+                android:id="@+id/item_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

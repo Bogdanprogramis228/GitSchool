@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:background="@color/fon"
+
+    android:orientation="vertical">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:background="@color/blue"
+        >
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/strilka"
+            android:layout_marginLeft="20dp"
+            android:contentDescription="Назад"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_schedule"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- CalendarView (стандартний) -->
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:firstDayOfWeek="2"
+        android:background="@color/white_00"
+        android:weekDayTextAppearance="@style/CalendarWeekDayStyle"
+        android:dateTextAppearance="@style/CalendarDateStyle"
+        android:selectedWeekBackgroundColor="@color/blue"
+        android:focusedMonthDateColor="@color/black"
+        android:unfocusedMonthDateColor="@color/black"
+        android:weekSeparatorLineColor="@color/blue"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <!-- Заголовок "Уроки" -->
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Уроки"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:padding="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textStyle="bold"/>
+
+    <!-- RecyclerView для відображення розкладу -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewLessons"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+</LinearLayout>
