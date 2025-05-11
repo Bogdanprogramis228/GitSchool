@@ -7,7 +7,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/fon">
 
         <LinearLayout
             android:orientation="vertical"
@@ -19,10 +20,10 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/blue"
+                android:background="@color/fon"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:navigationIcon="@drawable/toolbar_menu"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -62,76 +63,79 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@color/fon"
-                android:gravity="center">
+                android:gravity="center"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:weightSum="4">
 
                 <TextView
                     android:id="@+id/btn_schedule"
-                    android:layout_width="82dp"
+                    android:layout_width="0dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/buttom_background"
-                    android:textColor="@color/white"
-                    android:drawablePadding="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginRight="6dp"
                     android:paddingTop="15dp"
-                    android:gravity="center|top"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:textStyle="bold"
-                    android:drawableTop="@drawable/ic_schedule"
-                    android:text="@string/menu_schedl"
+                    android:drawableTop="@drawable/ic_search"
+                    android:background="@drawable/buttom_background"
+                    android:text="@string/search"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:textAlignment="center" />
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/btn_bookmarks"
-                    android:layout_width="82dp"
+                    android:layout_width="0dp"
                     android:layout_height="80dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
-                    android:drawablePadding="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:paddingTop="15dp"
-                    android:gravity="center|top"
-                    android:drawableTop="@drawable/ic_homework"
-                    android:layout_marginRight="5dp"
-                    android:textStyle="bold"
+                    android:layout_marginRight="6dp"
+                    android:drawableTop="@drawable/ic_bookmarks"
                     android:background="@drawable/buttom_background"
-                    android:text="@string/menu_homework"
-                    android:textAlignment="center" />
+                    android:text="@string/bookmarks"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/btn_seasons"
-                    android:layout_width="82dp"
+                    android:layout_width="0dp"
                     android:layout_height="80dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/buttom_background"
-                    android:drawableTop="@drawable/ic_grades"
-                    android:drawablePadding="5dp"
-                    android:gravity="center|top"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:paddingTop="15dp"
-                    android:text="@string/menu_grades"
-                    android:textStyle="bold"
+                    android:layout_marginRight="6dp"
+                    android:drawableTop="@drawable/ic_seasons"
+                    android:background="@drawable/buttom_background"
+                    android:text="@string/seasons"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/btn_profile"
-                    android:layout_width="82dp"
+                    android:layout_width="0dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/buttom_background"
-                    android:drawableTop="@drawable/ic_profile"
-                    android:layout_marginRight="20dp"
-                    android:drawablePadding="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:paddingTop="15dp"
-                    android:gravity="center|top"
-                    android:textStyle="bold"
+                    android:drawableTop="@drawable/ic_profile"
+                    android:background="@drawable/buttom_background"
                     android:text="@string/profile"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
             </LinearLayout>
+
 
 
             <TextView
@@ -142,13 +146,13 @@
                 android:textColor="@color/white"
                 android:layout_marginLeft="20dp"
                 android:textStyle="bold"
-                android:text="@string/menu_news"
+                android:text="-"
                 android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="300dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@color/transparent"
@@ -160,7 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="@string/menu_events"
+                android:text="-"
                 android:layout_marginLeft="20dp"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -181,7 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="@string/menu_catalog"
+                android:text="-"
                 android:layout_marginLeft="20dp"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -205,7 +209,7 @@
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/blue"
+        android:background="@color/fon"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"
         app:itemIconTint="@color/white"

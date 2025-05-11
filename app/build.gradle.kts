@@ -1,7 +1,11 @@
 plugins {
+    // Плагіни через version catalogs
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+
+    // Якщо працюємо з Kotlin + Glide (круто мати kapt)
+    id("kotlin-kapt")
 }
 
 android {
@@ -10,10 +14,11 @@ android {
 
     defaultConfig {
         applicationId = "com.example.gitschool"
-        minSdk = 24       // змінено з 31 на 24 для підтримки старіших пристроїв
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -36,29 +41,45 @@ android {
 }
 
 dependencies {
+
+    // Jsoup (залиште, якщо потрібен, тільки один раз)
+    implementation("org.jsoup:jsoup:1.14.3") // Або видаліть, якщо не використовуєте
+
+    // Retrofit + Gson (залиште, якщо потрібен для мережевих запитів)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.github.bumptech.glide:glide:4.15.1") // Актуальна версія Glide
-    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
-    implementation("org.jsoup:jsoup:1.14.3")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    implementation("com.google.firebase:firebase-firestore:24.10.1")
-    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
-    implementation("com.google.firebase:firebase-auth:22.3.1")
-    implementation("com.google.firebase:firebase-storage:20.2.1")
-    implementation("com.google.android.gms:play-services-auth:21.3.0")
+    // Glide (тільки необхідні рядки)
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation(libs.google.firebase.firestore.ktx)
+    implementation(libs.androidx.foundation.android)
+    kapt("com.github.bumptech.glide:compiler:4.15.1") // Використовуємо kapt замість annotationProcessor
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
-//    implementation("com.github.barteksc:android-pdf-viewer:3.2.0")
-    implementation("com.google.android.material:material:1.6.1")
+    // Firebase (один BOM та тільки необхідні сервіси)
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0")) // Тільки один BOM, новіший
+    implementation("com.google.firebase:firebase-auth-ktx")           // Для автентифікації
+    implementation("com.google.firebase:firebase-database-ktx")       // Для Realtime Database (замість Firestore/Storage)
+    implementation("com.google.android.gms:play-services-auth:21.3.0") // Для Google Sign-In
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore.ktx)
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0") // Перевірте останні стабільні версії, якщо бажаєте
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.0")
+
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+
+
+    implementation("com.google.mlkit:translate:17.0.1")
+
+    // Material, AppCompat, тощо (з version catalogs - це добре)
     implementation(libs.material)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.activity)
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

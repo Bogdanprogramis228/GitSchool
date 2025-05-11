@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GitSchool</string>
+    <string name="app_name">AniTube</string>
     <string name="input_name">Введіть ім`я користувача</string>
     <string name="input_password">Введіть пароль</string>
     <string name="input_email">Введіть електрону пошту</string>
@@ -14,6 +14,7 @@
     <string name="register_info">Введіть свої дані для реєстрації</string>
     <string name="support_center">Потрібна допомога? Відвідайте довідковий центр</string>
 
+    <!-- Блок second_activity -->
 
     <string name="menu_main">Головна</string>
     <string name="menu_top100">Топ 100 аніме</string>
@@ -22,26 +23,14 @@
     <string name="menu_history">Історія перегляду</string>
     <string name="menu_discord">Discord</string>
     <string name="menu_settings">Налаштування</string>
-    <string name="menu_contact">Зв’язок із нами: anitube.online@gmail.com</string>
+    <string name="menu_contact">Зв’язок із нами</string>
 
-    <!-- Блок second_activity -->
-
-
-    <string name="menu_mainSL">Головна</string>
-    <string name="menu_schedule">Розклад уроків</string>
-    <string name="menu_schedl">Розклад</string>
-    <string name="menu_homework">ДЗ</string>
-    <string name="menu_grades">Оцінки</string>
-    <string name="menu_events">Заходи та події</string>
-    <string name="menu_news">Оголошення</string>
-    <string name="menu_library">Бібліотека</string>
-    <string name="menu_cafeteria">Меню їдальні</string>
-    <string name="menu_settingsSL">Налаштування</string>
-    <string name="menu_faceboock">Faceboock</string>
-    <string name="menu_contactSL">Зв’язок із адміністрацією</string>
 
     <string name="search">Пошук</string>
     <string name="bookmarks">Закладки</string>
+    <string name="collection">Моя колекція</string>
+    <string name="your_comments">Мої коментарі</string>
+    <string name="your_collection">Колекція</string>
     <string name="seasons">По сезону</string>
     <string name="profile">Профіль</string>
 
@@ -50,6 +39,7 @@
 
     <string name="person_info">Персональна інформація</string>
     <string name="social_networks">Соцмережі</string>
+    <string name="zagal">Загальне</string>
     <string name="name">Ім`я:</string>
     <string name="email">Пошта:</string>
     <string name="password">Пароль:</string>
@@ -60,10 +50,36 @@
     <string name="update_data">Оновити дані</string>
     <string name="delete_ak">Видалити акаунт</string>
 
+    <string name="status_watching">Дивлюся</string>
+    <string name="status_plan_to_watch">Буду дивитись</string>
+    <string name="status_completed">Переглянуто</string>
+    <string name="status_dropped">Закинуто</string>
+    <string name="status_on_hold">Нецікаво</string>
+    <string name="status_favorite">Улюблене</string>
 
+    <array name="anime_statuses">
+        <item>@string/status_watching</item>
+        <item>@string/status_plan_to_watch</item>
+        <item>@string/status_completed</item>
+        <item>@string/status_dropped</item>
+        <item>@string/status_on_hold</item>
+        <item>@string/status_favorite</item>
+    </array>
+
+    <string name="status_add_to_list">ДОДАТИ В ЗАКЛАДКИ</string>
+    <string name="status_remove_from_list">Видалити зі списку</string>
+    <string name="status_loading">Завантаження...</string>
+    <string name="status_saving">Збереження...</string>
+    <string name="status_removing">Видалення...</string>
+    <string name="status_error">Помилка</string>
+    <string name="status_updated">Статус оновлено: %s</string>
+    <string name="status_removed">Видалено зі списку</string>
+    <string name="status_update_error">Помилка оновлення статусу</string>
+    <string name="status_remove_error">Помилка видалення статусу</string>
+    <string name="auth_required">Потрібна авторизація</string>
+    <string name="back">Назад</string>
 
     <string name="google_api_key" translatable="false">AIzaSyAk7_wI43PeUXCEhjgVxoxWCQdnAl2eQ8g</string>
     <string name="client_id">758018434687-dcatio3tf20pu2bo7vpmmha0vd1tv5lh.apps.googleusercontent.com</string>
-<!--    <string name="client_id">758018434687-dcatio3tf20pu2bo7vpmmha0vd1tv5lh.apps.googleusercontent.com</string>-->
 
 </resources>

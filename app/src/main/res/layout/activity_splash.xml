@@ -2,14 +2,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bg_splash">
+    android:background="@drawable/onepuch_fon">
 
     <TextView
         android:id="@+id/appTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="212dp"
-        android:text="GitSchool"
+        android:text="@string/app_name"
         android:textColor="@android:color/white"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Завантаження..."
+        android:text="Загрузка..."
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:textSize="25sp"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="88dp"
         android:progress="0"
-        android:background="@color/pink"
+        android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

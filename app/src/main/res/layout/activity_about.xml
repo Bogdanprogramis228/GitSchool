@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollViewAbout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@color/fon">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <!-- Заголовок -->
+        <TextView
+            android:id="@+id/textViewAboutTitle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/element_set"
+            android:drawableLeft="@drawable/strilka"
+            android:drawablePadding="16dp"
+            android:text="Про додаток"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Правила спільноти -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Правила спільноти AniTube"
+            android:textSize="18sp"
+            android:padding="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:paddingTop="20dp"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="За порушення правил користувачеві обмежується доступ до коментарів або накладається блокування на обліковий запис. Тривалість бану залежить від ступеня порушення."
+            android:padding="20dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:paddingBottom="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="У нас заборонено:"
+            android:padding="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:paddingBottom="4dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Спойлери. Якщо ваш коментар містить спойлер, то на початку повідомлення попередьте про це користувачів.\n\n• Образи та провокації. Будь-які образи, а також провокація на конфлікт учасників спільноти.\n\n• Розпалювання ненависті. За расовою, національною або релігійною ознакою.\n\n• Нецензурна лексика. Допускається лише із заміненими літерами у вигляді ***.\n\n• Флуд. Публікація безлічі беззмістовних повідомлень.\n\n• Реклама. Будь-яка реклама, посилання на сторонні спільноти, канали, чати тощо."
+            android:textColor="@color/white"
+            android:padding="20dp"
+            android:textSize="14sp"
+            android:paddingBottom="20dp"/>
+
+        <!-- Контактна інформація -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Шановний користувачу!"
+            android:textSize="18sp"
+            android:padding="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="У разі виявлення багів, помилок у роботі застосунку, а також із питаннями щодо використання або бажанням надати пораду з покращення застосунку, просимо зв'язатися з нами!\n\nНаша пошта: bohdan.boichuk@ukd.edu.ua\nDiscord: https://discord.gg/prAfgxBYHZ\nTelegram канал: https://t.me/songsflay\nЗагальний чат: https://t.me/+G5wOptI5mOYzYzI6\nСайт: example.com"
+            android:textColor="@color/white"
+            android:padding="20dp"
+            android:textSize="14sp"
+            android:autoLink="web"
+            android:paddingBottom="20dp"/>
+
+        <!-- Заголовок FAQ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Часті запитання (FAQ) / Допомога"
+            android:textSize="18sp"
+            android:padding="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:paddingBottom="8dp"/>
+
+        <!-- ExpandableListView для FAQ -->
+        <com.example.gitschool.models.ExpandableHeightListView
+            android:id="@+id/expandableListViewFaq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:groupIndicator="@null"
+            android:dividerHeight="1dp"/>
+    </LinearLayout>
+</ScrollView>

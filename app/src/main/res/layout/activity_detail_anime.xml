@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/detail_scroll"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fon"
+    android:padding="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:orientation="vertical"
+        >
+
+        <FrameLayout
+            android:id="@+id/anime_block_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Фонова картинка (постер або банер) -->
+            <ImageView
+                android:id="@+id/detail_header_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:alpha="0.6" />
+
+            <!-- Внутрішній вертикальний блок для стрілки, постера, назви -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <!-- Кнопка повернення (стрілка) -->
+                <TextView
+                    android:id="@+id/back_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:drawableLeft="@drawable/strilka"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="UseCompatTextViewDrawableXml" />
+
+                <!-- Міні-постер (за бажанням, або роби так, як тобі треба) -->
+                <ImageView
+                    android:id="@+id/detail_anime_image"
+                    android:layout_width="175dp"
+                    android:layout_height="238dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop" />
+
+                <!-- Назва аніме -->
+                <TextView
+                    android:id="@+id/detail_anime_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:text="Назва аніме"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/detail_info_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@color/secondary"
+            android:gravity="center|left"
+            android:layout_marginBottom="4dp"
+            >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:text="Жанри:"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                />
+
+            <TextView
+                android:id="@+id/detail_genres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:gravity="center|left"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:text="Рік:"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                />
+
+            <TextView
+                android:id="@+id/detail_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:background="@color/secondary"
+            android:gravity="center|left"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:text="Рейтинг:"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                />
+
+            <TextView
+                android:id="@+id/detail_anime_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:gravity="center|left"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:text="Тип:"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                />
+
+            <TextView
+                android:id="@+id/detail_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:background="@color/secondary"
+                android:gravity="center|left"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:text="Статус:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/detail_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="46dp"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:gravity="center|left"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:text="Тривалість:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/detail_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="46dp"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:background="@color/secondary"
+                android:gravity="center|left"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:text="Студія:"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/detail_studio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="46dp"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- Кнопка "Дивитися онлайн" -->
+        <Button
+            android:id="@+id/button_watch_ukr"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textSize="12dp"
+            android:background="@drawable/buttom_background"
+            android:layout_gravity="center"
+            android:text="ДИВИТИСЬ ОНЛАЙН"
+            android:layout_marginTop="16dp"
+            />
+
+        <!-- Блок "Схожі аніме" (горизонтальний список) -->
+        <Button
+            android:id="@+id/buttonAnimeStatus"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/buttom_background"
+            android:text="ДОДАТИ В ЗАКЛАДКИ"
+            android:textSize="12dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/statusOptionsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@color/secondary"
+            android:visibility="gone"
+            tools:visibility="visible">
+            <TextView
+            android:id="@+id/statusOptionRemove"
+            style="@style/StatusOptionTextView"
+            android:text="Видалити із закладок" />
+            <TextView
+            android:id="@+id/statusOptionWatching"
+            style="@style/StatusOptionTextView"
+            android:text="@string/status_watching" />
+            <TextView
+            android:id="@+id/statusOptionPlanToWatch"
+            style="@style/StatusOptionTextView"
+            android:text="@string/status_plan_to_watch" />
+
+            <TextView
+                android:id="@+id/statusOptionCompleted"
+                style="@style/StatusOptionTextView"
+                android:text="@string/status_completed" />
+
+            <TextView
+                android:id="@+id/statusOptionDropped"
+                style="@style/StatusOptionTextView"
+                android:text="@string/status_dropped" />
+
+            <TextView
+                android:id="@+id/statusOptionOnHold"
+                style="@style/StatusOptionTextView"
+                android:text="@string/status_on_hold" />
+
+            <TextView
+                android:id="@+id/statusOptionFavorite"
+                style="@style/StatusOptionTextView"
+                android:text="@string/status_favorite"
+                android:paddingBottom="8dp"/> </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Опис сюжету"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:id="@+id/detail_anime_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Опис аніме..."
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewViewingOrderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Порядок перегляду:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="24dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_viewing_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
+
+        <!--імітація плеєра-->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/playerTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/secondary"
+            app:tabTextColor="@color/gray"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/purple"
+            app:tabMode="fixed"
+            app:tabGravity="fill">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Трейлер" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Плеєр" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <FrameLayout
+            android:id="@+id/playerContentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:background="@color/black">
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/youtubePlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+                app:showFullScreenButton="true"
+                app:autoPlay="false"/>
+            <FrameLayout
+            android:id="@+id/placeholderPlayerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+            <ImageView
+            android:id="@+id/placeholderPlayerImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/player_placeholder" />
+            <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:src="@android:drawable/ic_media_play"
+            android:alpha="0.7"/>
+
+        </FrameLayout>
+
+            <TextView
+                android:id="@+id/textViewTrailerError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Трейлер недоступний"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:visibility="gone"/>
+        </FrameLayout>
+
+        <!-- Контейнер для кнопок "Лайк" та "Дизлайк" -->
+        <LinearLayout
+            android:id="@+id/reactionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="16dp"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <!-- Кнопка Лайк -->
+            <ImageButton
+                android:id="@+id/likeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_like"
+                android:background="@drawable/button_default_background"
+                android:textSize="24sp" />
+
+            <!-- Лічильник лайків -->
+            <TextView
+                android:id="@+id/likeCountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="16dp"
+                android:text="0"
+                android:textSize="16sp"
+                android:textColor="@color/white" />
+
+            <!-- Кнопка Дизлайк -->
+            <ImageButton
+                android:id="@+id/dislikeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_dislike"
+                android:background="@drawable/button_default_background"
+                android:textSize="24sp"
+                />
+
+            <!-- Лічильник дизлайків -->
+            <TextView
+                android:id="@+id/dislikeCountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:text="0"
+                android:textSize="16sp"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/detail_similar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Схожі аніме"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="24dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_similar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Блок "Коментарі" -->
+        <TextView
+            android:id="@+id/detail_comments_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Коментарі"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="24dp"/>
+
+
+        <EditText
+            android:id="@+id/editTextComment"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/comment_backgraund"
+            android:inputType="textMultiLine"
+            android:gravity="top|start"
+            android:maxLength="500"
+            android:hint="Ваш коментар..."
+            android:textSize="14sp"
+            android:textColor="@color/gray"
+            android:textColorHint="@color/gray"
+            android:layout_marginTop="8dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+
+        <Button
+            android:id="@+id/button_add_comments"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textSize="12dp"
+            android:background="@drawable/buttom_background"
+            android:layout_gravity="center"
+            android:text="Надіслати"
+            android:layout_marginTop="8dp"
+            />
+
+        <!-- список коментарів цього аніме -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+</ScrollView>

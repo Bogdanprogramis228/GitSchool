@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="black01">#111010</color>
     <color name="black02">#45000000</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white02">#CAC4D0</color>
     <color name="purple">#4F378B</color>
     <color name="gray">#656368</color>
+    <color name="gray02">#4A4458</color>
+    <color name="hint">#78727E</color>
+    <color name="secondary">#332D41</color>
     <color name="blue">#020E60</color>
     <color name="button">#3B6AA8</color>
     <color name="bl">#3C5997</color>
     <color name="pink">#EADDFF</color>
     <color name="lagoon">#0BA3D5</color>
     <color name="red">#EB000C</color>
+    <color name="red01">#C8544D</color>
+    <color name="burui">#633B48</color>
 
+    
     <color name="button01">#2A52BE</color>
     <color name="button02">#6A8DFF</color>
     <color name="green">#32CD32</color>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/transparent"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp">
+
+    <!-- Anime title and delete button -->
+    <LinearLayout
+        android:id="@+id/commentHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/animeTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Назва аніме"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/deleteCommentButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_delete"
+            />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/commentUserAvatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ava_01"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" /> <TextView
+        android:id="@+id/commentUserName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        tools:text="Ім'я користувача"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/commentLikeButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_like"
+            android:scaleType="centerInside"
+            app:tint="@color/purple"/>
+
+        <TextView
+            android:id="@+id/commentLikeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="24dp"
+            android:gravity="start"
+            android:layout_marginStart="4dp"
+            tools:text="+12"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/commentDislikeButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_dislike"
+            android:scaleType="centerInside"
+            app:tint="@color/red"/>
+
+        <TextView
+            android:id="@+id/commentDislikeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="24dp"
+            android:gravity="start"
+            android:layout_marginStart="4dp"
+            tools:text="-1"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/commentText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"
+        tools:text="..."
+        android:textColor="@color/white"
+        android:background="@color/gray02"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/commentTimestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="8dp"
+        tools:text="16:25 12.03.2022"
+        android:textColor="@color/gray"
+        android:textSize="12sp" />
+
+</LinearLayout>

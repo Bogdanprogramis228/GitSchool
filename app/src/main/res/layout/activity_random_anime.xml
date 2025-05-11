@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/randomAnimeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/fon"
+    android:padding="12dp">
+
+    <!-- Top App Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:orientation="horizontal"
+        android:drawablePadding="16dp"
+        android:background="@drawable/element_set"
+        >
+
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/strilka"
+            />
+
+        <TextView
+            android:id="@+id/randomTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_search"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/randomProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Content Container -->
+    <LinearLayout
+        android:id="@+id/contentContainer"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/element_set"
+        android:padding="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/animeImage"
+            android:layout_width="250dp"
+            android:layout_height="350dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/animeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Назва аніме"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Series and Year -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:id="@+id/animeEpisodes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="Серій: 0"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/animeYear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="2024"
+                android:textColor="@color/white"
+                android:gravity="end"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Rating and Genre -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/animeRating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="Рейтинг: 0.0 ⭐"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/animeGenres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="Жанри: -"
+                android:textColor="@color/white"
+                android:gravity="end"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/watchButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Дивитись"
+                android:backgroundTint="#5D4FB2"
+                android:textColor="#FFFFFF"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/randomizeButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Підбір"
+                android:backgroundTint="#DCDCDC"
+                android:textColor="#000000" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

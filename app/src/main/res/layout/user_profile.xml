@@ -2,86 +2,87 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/fon"
+    tools:context=".ProfileActivity">
 
-    <!-- Верхній контейнер з фоном, аватаркою та ім'ям користувача -->
     <FrameLayout
-        android:id="@+id/topContainer"
-        android:layout_width="0dp"
-        android:layout_height="295dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    android:id="@+id/topContainer"
+    android:layout_width="0dp"
+    android:layout_height="295dp"
+        android:background="@color/fon"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Фонове зображення -->
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/back_01"
+        android:contentDescription="Фон профілю" />
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical">
+
         <ImageView
-            android:id="@+id/backgroundImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bg_splash" />
+            android:id="@+id/backButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/strilka"
+            android:padding="4dp"
+            />
 
-        <!-- Верхня панель з кнопками -->
-        <LinearLayout
-            android:id="@+id/topBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:padding="16dp"
-            android:gravity="center_vertical">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-            <!-- Стрілка назад -->
-            <ImageView
-                android:id="@+id/backButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/strilka" />
+        <ImageView
+            android:id="@+id/editProfileButton"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:src="@drawable/ic_editprofile"
+            android:padding="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Редагувати профіль" />
+    </LinearLayout>
 
-            <!-- Проміжний простір -->
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/avatarImage"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+        tools:src="@drawable/ava_01"
+        android:padding="2dp"
+        />
 
-            <!-- Іконка редагування (зміна аватарки/фону) -->
-            <ImageView
-                android:id="@+id/editProfileButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_editprofile" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="240dp"
+        tools:text="Андрійко"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-        <!-- Аватарка користувача (центрально) -->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/avatarImage"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
-            android:scaleType="centerCrop"
-            app:shapeAppearanceOverlay="@style/RoundImageShape"
-            android:background="@drawable/logo"
-            android:padding="2dp" />
+</FrameLayout>
 
-        <!-- Ім'я користувача -->
-        <TextView
-            android:id="@+id/userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="240dp"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-    </FrameLayout>
-
-    <!-- Нижній блок зі списком елементів -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
@@ -96,371 +97,172 @@
             android:id="@+id/listContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/profile_background"
-            android:orientation="vertical">
-
-            <!-- Елемент списку з розкривною інформацією -->
+            android:background="@color/fon"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:orientation="vertical"
+            >
             <LinearLayout
-                android:id="@+id/accountInfoItem"
+            android:id="@+id/accountInfoItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?attr/selectableItemBackground"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+                android:layout_marginTop="8dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/accountInfoIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_infoprofile" />
+
+            <TextView
+                android:id="@+id/accountInfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/white"
+                android:text="Інформація про акаунт"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/accountInfoArrow"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_down" />
+        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/accountInfoDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="?attr/selectableItemBackground"
-                android:padding="16dp">
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginStart="60dp" android:layout_marginEnd="20dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:gravity="center_vertical">
+                <View style="@style/DividerStyle" />
 
-                    <!-- Іконка елемента -->
-                    <ImageView
-                        android:id="@+id/accountInfoIcon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_infoprofile" />
-
-                    <!-- Текст елемента -->
-                    <TextView
-                        android:id="@+id/accountInfoText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="16dp"
-                        android:textColor="@color/white"
-                        android:text="Інформація про акаунт"
-                        android:textSize="16sp" />
-
-                    <!-- Стрілка вниз/вгору для розкриття/згортання інформації -->
-                    <ImageView
-                        android:id="@+id/accountInfoArrow"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_arrow_down" />
-                </LinearLayout>
-
-                <!-- Розкривна частина (спочатку прихована) -->
-                <!-- Розкривна частина (спочатку прихована) -->
-                <LinearLayout
-                    android:id="@+id/accountInfoDetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:paddingTop="8dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp">
-
-                    <!-- Розділювальна лінія (всередині випадаючого списку) -->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/white"
-                        android:layout_marginBottom="8dp" />
-
-                    <!-- Блок «Пошта» -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="4dp">
-
-                        <!-- Статичний напис «Пошта:» -->
-                        <TextView
-                            android:id="@+id/labelEmail"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Пошта:"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
-
-                        <!-- Динамічне поле для email -->
-                        <TextView
-                            android:id="@+id/userEmail"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                    <!-- Блок «Пароль» -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="4dp">
-
-                        <TextView
-                            android:id="@+id/labelPassword"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Пароль:"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/userPassword"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                    <!-- Блок «Дата реєстрації» -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="4dp">
-
-                        <TextView
-                            android:id="@+id/labelRegistrationDate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Дата реєстрації:"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/userRegistrationDate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                    <!-- Блок «Останній вхід» -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="4dp">
-
-                        <TextView
-                            android:id="@+id/labelLastLogin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Останній вхід:"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/userLastLogin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
+                <TextView style="@style/AccountDetailLabel"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Ім'я:" />
+                <TextView android:id="@+id/userNameInfo" style="@style/AccountDetailValue" tools:text="Андрійко" />
+                <TextView style="@style/AccountDetailLabel"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Пошта:" />
+                <TextView android:id="@+id/userEmail" style="@style/AccountDetailValue" tools:text="email@example.com" />
+                <TextView style="@style/AccountDetailLabel"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Пароль:" />
+                <TextView android:id="@+id/userPassword" style="@style/AccountDetailValue" tools:text="********" />
+                <TextView style="@style/AccountDetailLabel"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Дата реєстрації:" />
+                <TextView android:id="@+id/userRegistrationDate" style="@style/AccountDetailValue" tools:text="01.01.2024" />
+                <TextView style="@style/AccountDetailLabel"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Останній вхід:" />
+                <TextView android:id="@+id/userLastLogin" style="@style/AccountDetailValue" tools:text="10.04.2025" />
             </LinearLayout>
 
-            <!-- Розділювальна лінія -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/white" />
+            <View style="@style/DividerStyle" />
 
-            <!-- Елемент списку \"Статистика\" -->
             <LinearLayout
                 android:id="@+id/accountStatistics"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="?attr/selectableItemBackground"
-                android:padding="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:gravity="center_vertical">
-
-                    <!-- Іконка елемента -->
-                    <ImageView
-                        android:id="@+id/accountStatisticsIcon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_account_statistics" />
-
-                    <!-- Текст елемента -->
-                    <TextView
-                        android:id="@+id/accountStatisticsText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="16dp"
-                        android:textColor="@color/white"
-                        android:text="Статистика"
-                        android:textSize="16sp" />
-
-                    <!-- Стрілка вниз/вгору для розкриття/згортання інформації -->
-                    <ImageView
-                        android:id="@+id/accountStatisticsArrow"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_arrow_down" />
-                </LinearLayout>
+                style="@style/ProfileListItemStyle"> <ImageView android:id="@+id/accountStatisticsIcon" style="@style/ProfileListItemIconStyle" android:src="@drawable/ic_account_statistics" />
+                <TextView android:id="@+id/accountStatisticsText" style="@style/ProfileListItemTextStyle" android:text="Статистика" />
+                <ImageView android:id="@+id/accountStatisticsArrow" style="@style/ProfileListItemIconStyle" android:src="@drawable/ic_arrow_down" />
             </LinearLayout>
 
-            <!-- Розділювальна лінія -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/white" />
+            <LinearLayout
+                android:id="@+id/statisticsDetails"
+                style="@style/ProfileDetailsContainerStyle"> <View style="@style/DividerStyle" />
+                <TextView android:id="@+id/statsWatching" style="@style/StatisticsTextView" tools:text="Дивлюся: 0" />
+                <TextView android:id="@+id/statsPlanToWatch" style="@style/StatisticsTextView" tools:text="Буду дивитись: 0" />
+                <TextView android:id="@+id/statsCompleted" style="@style/StatisticsTextView" tools:text="Переглянуто: 0" />
+                <TextView android:id="@+id/statsDropped" style="@style/StatisticsTextView" tools:text="Закинуто: 0" />
+                <TextView android:id="@+id/statsOnHold" style="@style/StatisticsTextView" tools:text="Нецікаво: 0" />
+                <TextView android:id="@+id/statsFavorite" style="@style/StatisticsTextView" tools:text="Улюблене: 0" />
+                <View style="@style/DividerStyle.Light" /> <TextView android:id="@+id/statsComments" style="@style/StatisticsTextView" tools:text="Коментарів залишено: 0" />
+            </LinearLayout>
 
-            <!-- Елемент списку, що веде до іншої активності -->
+            <View style="@style/DividerStyle" />
+
+            <LinearLayout
+                android:id="@+id/accountCollection"
+                style="@style/ProfileListItemStyle">
+                <ImageView android:id="@+id/collectionIcon" style="@style/ProfileListItemIconStyle" android:src="@drawable/ic_collection" />
+                <TextView android:id="@+id/accountcollectionText" style="@style/ProfileListItemTextStyle" android:text="@string/collection" />
+                <ImageView android:id="@+id/collectionArrow" style="@style/ProfileListItemIconStyle" android:src="@drawable/ic_arrow_right" />
+            </LinearLayout>
+
+            <View style="@style/DividerStyle" />
+
+            <LinearLayout
+                android:id="@+id/accountComments"
+                style="@style/ProfileListItemStyle">
+                <ImageView android:id="@+id/commentsIcon" style="@style/ProfileListItemIconStyle" android:src="@drawable/ic_comments" />
+                <TextView android:id="@+id/accountcommentsText" style="@style/ProfileListItemTextStyle" android:text="@string/your_comments" />
+                <ImageView android:id="@+id/commentsArrow" style="@style/ProfileListItemIconStyle" android:src="@drawable/ic_arrow_right" />
+            </LinearLayout>
+
+            <View style="@style/DividerStyle" />
+
             <LinearLayout
                 android:id="@+id/accountMasseges"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="?attr/selectableItemBackground"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:gravity="center_vertical">
-
-                    <!-- Іконка елемента -->
-                    <ImageView
-                        android:id="@+id/massegesIcon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_masseges" />
-
-                    <!-- Текст елемента -->
-                    <TextView
-                        android:id="@+id/accountmassegesText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="16dp"
-                        android:textColor="@color/white"
-                        android:text="Повідомлення"
-                        android:textSize="16sp" />
-
-                    <!-- Стрілка вправо для переходу -->
-                    <ImageView
-                        android:id="@+id/massegesArrow"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
+                style="@style/ProfileListItemStyle">
+                <ImageView android:id="@+id/massegesIcon" style="@style/ProfileListItemIconStyle" android:src="@drawable/ic_masseges" />
+                <TextView android:id="@+id/accountmassegesText" style="@style/ProfileListItemTextStyle" android:text="Повідомлення" />
+                <ImageView android:id="@+id/massegesArrow" style="@style/ProfileListItemIconStyle" android:src="@drawable/ic_arrow_right" />
             </LinearLayout>
 
-            <!-- Розділювальна лінія -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/white" />
+            <View style="@style/DividerStyle" />
 
-            <!-- Елемент списку \"Налаштування\" -->
             <LinearLayout
                 android:id="@+id/accountSetings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="?attr/selectableItemBackground"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:gravity="center_vertical">
-
-                    <!-- Іконка елемента -->
-                    <ImageView
-                        android:id="@+id/Setings"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_settings" />
-
-                    <!-- Текст елемента -->
-                    <TextView
-                        android:id="@+id/infoaccountSetings"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="16dp"
-                        android:textColor="@color/white"
-                        android:text="@string/menu_settingsSL"
-                        android:textSize="16sp" />
-
-                    <!-- Стрілка вправо для переходу -->
-                    <ImageView
-                        android:id="@+id/setingsArrow"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
+                style="@style/ProfileListItemStyle">
+                <ImageView android:id="@+id/Setings" style="@style/ProfileListItemIconStyle" android:src="@drawable/ic_settings" />
+                <TextView android:id="@+id/infoaccountSetings" style="@style/ProfileListItemTextStyle" android:text="@string/menu_settings" />
+                <ImageView android:id="@+id/setingsArrow" style="@style/ProfileListItemIconStyle" android:src="@drawable/ic_arrow_right" />
             </LinearLayout>
 
-            <!-- Розділювальна лінія -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/white" />
+            <View style="@style/DividerStyle" />
 
-            <!-- Елемент списку для виходу з акаунту -->
             <LinearLayout
                 android:id="@+id/logoutItem"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="?attr/selectableItemBackground"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:gravity="center_vertical">
-
-                    <!-- Іконка виходу -->
-                    <ImageView
-                        android:id="@+id/logoutIcon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_logout" />
-
-                    <!-- Текст \"Вийти з акаунту\" -->
-                    <TextView
-                        android:id="@+id/logoutText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:textColor="@color/white"
-                        android:text="Вийти з акаунту"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                style="@style/ProfileListItemStyle">
+                <ImageView android:id="@+id/logoutIcon" style="@style/ProfileListItemIconStyle" android:src="@drawable/ic_logout" />
+                <TextView
+                    android:id="@+id/logoutText"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/white"
+                    android:text="Вийти з акаунту"
+                    android:textSize="16sp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/block"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical">
+            </LinearLayout>
+
         </LinearLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

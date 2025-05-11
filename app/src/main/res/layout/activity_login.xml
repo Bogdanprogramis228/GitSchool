@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_splash"
+    android:background="@drawable/onepuch_fon"
     android:padding="16dp"
     tools:context=".LoginActivity">
 
@@ -48,6 +48,7 @@
         android:paddingLeft="16dp"
         android:textSize="14sp"
         android:paddingRight="16dp"
+        android:textColorHint="@color/hint"
         android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.474"
@@ -65,6 +66,7 @@
         android:paddingLeft="16dp"
         android:textSize="14sp"
         android:paddingRight="16dp"
+        android:textColorHint="@color/hint"
         android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +77,7 @@
         android:layout_width="320dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/purple"
         android:gravity="center"
         android:text="@string/login"
         android:radius="10dp"

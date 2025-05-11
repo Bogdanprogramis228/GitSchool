@@ -1,26 +1,40 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/user_container"
     android:layout_width="match_parent"
-    android:layout_height="184dp"
-    android:background="@drawable/bg_splash"
-    android:padding="16dp">
+    android:layout_height="185dp"
+    >
 
+    <!-- Фон як ImageView -->
+    <ImageView
+        android:id="@+id/user_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/back_01"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Аватар -->
+
+    <!-- Ім'я -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/user_avatar"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="16dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/logo"
+        android:src="@drawable/ava_01"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.753"
         app:shapeAppearanceOverlay="@style/RoundImageShape"
         app:strokeColor="@color/white"
-        app:strokeWidth="2dp"
-        />
+        app:strokeWidth="2dp" />
 
     <TextView
         android:id="@+id/user_name"
@@ -34,6 +48,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/user_avatar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

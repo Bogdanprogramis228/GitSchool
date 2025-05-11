@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="90dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@color/transparent">
+
+    <!-- Зображення аніме (верхня частина карточки) -->
+    <ImageView
+        android:id="@+id/anime_image"
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true" />
+
+    <!-- Рейтинг, розташований поверх зображення -->
+    <TextView
+        android:id="@+id/anime_rating"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/block_raiting"
+        android:gravity="center"
+        android:text="9.7"
+        android:textColor="@android:color/white"
+        android:textSize="10sp" />
+
+    <!-- Кількість серій, розташована поверх зображення праворуч -->
+
+    <!-- Назва аніме, розташована окремо під зображенням -->
+
+    <TextView
+        android:id="@+id/anime_episodes"
+        android:layout_width="42dp"
+        android:layout_height="12dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="98dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/red01"
+        android:gravity="center"
+        android:text="12 серій"
+        android:textColor="@android:color/white"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/anime_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/anime_image"
+        android:gravity="center"
+        android:text="Назва"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

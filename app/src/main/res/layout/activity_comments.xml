@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fon"
+    android:padding="20dp">
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/backButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/element_set"
+        android:drawableLeft="@drawable/strilka"
+        android:drawablePadding="16dp"
+        android:text="Коментарі"
+        android:gravity="center"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp" />
+
+</LinearLayout>

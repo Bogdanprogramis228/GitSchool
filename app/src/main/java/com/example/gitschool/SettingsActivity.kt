@@ -7,37 +7,36 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.appcompat.widget.SwitchCompat
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
-@Suppress("DEPRECATION")
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var currentUser: FirebaseUser
 
+    // Персональні поля
     private lateinit var editTextName: EditText
     private lateinit var editTextEmail: EditText
     private lateinit var editTextPassword: EditText
 
+    // Секція «Загальне»
+    private lateinit var switchPush: SwitchCompat
+    private lateinit var switchAdult: SwitchCompat
+    private lateinit var switchEmail: SwitchCompat
+
+    // Кнопки
     private lateinit var buttonUpdate: Button
     private lateinit var buttonDelete: Button
 
-    private lateinit var buttonUnlinkGoogle: LinearLayoutCompat
-    private lateinit var buttonLinkDiscord: LinearLayoutCompat
-    private lateinit var buttonLinkTelegram: LinearLayoutCompat
-
-    // Змінні для збереження первинних даних
+    // Щоб відслідковувати попередні значення
     private var originalName: String = ""
     private var originalPassword: String = ""
 
@@ -45,19 +44,12 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        editTextName = findViewById(R.id.editTextName)
-        editTextEmail = findViewById(R.id.editTextEmail)
-        editTextPassword = findViewById(R.id.editTextPassword)
-        buttonUpdate = findViewById(R.id.buttonUpdate)
-        buttonDelete = findViewById(R.id.buttonDelete)
-        buttonUnlinkGoogle = findViewById(R.id.buttonUnlinkGoogle)
-        buttonLinkDiscord = findViewById(R.id.buttonLinkDiscord)
-        buttonLinkTelegram = findViewById(R.id.buttonLinkTelegram)
-
+        // Ініціалізуємо Firebase
         FirebaseApp.initializeApp(this)
         auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
+        db   = FirebaseFirestore.getInstance()
 
+        // Якщо не залогінений — назад в логін
         if (auth.currentUser == null) {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
@@ -65,80 +57,107 @@ class SettingsActivity : AppCompatActivity() {
         }
         currentUser = auth.currentUser!!
 
+        // Прив’язуємо всі view
+        bindViews()
+
+        // Робимо поля імені/пароля редагованими по кліку
         setupEditText(editTextName)
         setupEditText(editTextPassword)
 
+        // Завантажуємо дані користувача та загальні налаштування
         loadUserData()
+        loadGeneralSettings()
 
+        // listeners
         buttonUpdate.setOnClickListener {
             showConfirmationDialog("оновлення") { updateUserData() }
         }
-
         buttonDelete.setOnClickListener {
             showConfirmationDialog("видалення") { deleteUserAccount() }
         }
-
-        buttonUnlinkGoogle.setOnClickListener {
-            if (currentUser.providerData.any { it.providerId == "google.com" }) {
-                Toast.makeText(this, "Google акаунт не можна відв'язати.", Toast.LENGTH_SHORT).show()
-            }
-        }
-        buttonLinkDiscord.setOnClickListener { linkDiscord() }
-        buttonLinkTelegram.setOnClickListener { linkTelegram() }
-
         findViewById<TextView>(R.id.settings_back).setOnClickListener {
-            onBackPressed()
+            finish()
         }
+
+        // Зберігаємо перемикання секції «Загальне»
+        switchPush.setOnCheckedChangeListener { _, isChecked ->
+            db.collection("users")
+                .document(currentUser.uid)
+                .update("pushNotifications", isChecked)
+        }
+        switchAdult.setOnCheckedChangeListener { _, isChecked ->
+            db.collection("users")
+                .document(currentUser.uid)
+                .update("adultContent", isChecked)
+        }
+        switchEmail.setOnCheckedChangeListener { _, isChecked ->
+            db.collection("users")
+                .document(currentUser.uid)
+                .update("emailNotifications", isChecked)
+        }
+    }
+
+    private fun bindViews() {
+        editTextName     = findViewById(R.id.editTextName)
+        editTextEmail    = findViewById(R.id.editTextEmail)
+        editTextPassword = findViewById(R.id.editTextPassword)
+
+        switchPush   = findViewById(R.id.switchPushNotifications)
+        switchAdult  = findViewById(R.id.switchAdultContent)
+        switchEmail  = findViewById(R.id.switchEmailNotifications)
+
+        buttonUpdate = findViewById(R.id.buttonUpdate)
+        buttonDelete = findViewById(R.id.buttonDelete)
     }
 
     private fun setupEditText(editText: EditText) {
         editText.isFocusable = false
-        editText.isClickable = true
+        editText.isClickable  = true
         editText.setOnClickListener {
             editText.isFocusableInTouchMode = true
             editText.requestFocus()
             showKeyboard(editText)
         }
-        editText.setOnFocusChangeListener { view, hasFocus ->
+        editText.setOnFocusChangeListener { v, hasFocus ->
             if (!hasFocus) {
-                hideKeyboard(view)
-                view.isFocusable = false
+                hideKeyboard(v)
+                v.isFocusable = false
             }
         }
     }
 
     private fun showKeyboard(view: View) {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+        (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+            .showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
-
     private fun hideKeyboard(view: View) {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
+        (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+            .hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun loadUserData() {
+        // email — тільки для читання
         editTextEmail.setText(currentUser.email)
         editTextEmail.isEnabled = false
 
-        db.collection("users").document(currentUser.uid).get()
-            .addOnSuccessListener { document ->
-                // Завантажуємо ім'я з бази або використовуємо displayName з Firebase
-                val nameFromDb = document.getString("name") ?: currentUser.displayName ?: ""
+        db.collection("users").document(currentUser.uid)
+            .get()
+            .addOnSuccessListener { doc ->
+                // Ім’я
+                val nameFromDb = doc.getString("name") ?: currentUser.displayName ?: ""
                 editTextName.setText(nameFromDb)
                 originalName = nameFromDb
 
-                // Перевіряємо, чи користувач увійшов через Google
-                val isGoogleUser = currentUser.providerData.any { it.providerId == "google.com" }
-                if (isGoogleUser) {
-                    // Для Google-користувача пароль спочатку відсутній
+                // Пароль
+                val isGoogle = currentUser.providerData.any { it.providerId == "google.com" }
+                if (isGoogle) {
                     editTextPassword.setText("")
                     editTextPassword.hint = "Введіть пароль"
                     originalPassword = ""
                 } else {
-                    val storedPassword = document.getString("password") ?: ""
-                    editTextPassword.setText(storedPassword)
-                    originalPassword = storedPassword
+                    val pwd = doc.getString("password") ?: ""
+                    editTextPassword.setText(pwd)
+                    originalPassword = pwd
                 }
             }
             .addOnFailureListener {
@@ -146,91 +165,99 @@ class SettingsActivity : AppCompatActivity() {
             }
     }
 
+    private fun loadGeneralSettings() {
+        db.collection("users").document(currentUser.uid)
+            .get()
+            .addOnSuccessListener { doc ->
+                switchPush.isChecked   = doc.getBoolean("pushNotifications") ?: true
+                switchAdult.isChecked  = doc.getBoolean("adultContent")       ?: false
+                switchEmail.isChecked  = doc.getBoolean("emailNotifications") ?: false
+            }
+            .addOnFailureListener {
+                // нічого страшного, лишимо дефолтні
+            }
+    }
+
     private fun updateUserData() {
         val newName = editTextName.text.toString().trim()
-        val newPassword = editTextPassword.text.toString().trim()
+        val newPwd  = editTextPassword.text.toString().trim()
 
         val nameChanged = newName != originalName
-        val passwordChanged = newPassword.isNotEmpty() && newPassword != originalPassword
+        val pwdChanged  = newPwd.isNotEmpty() && newPwd != originalPassword
 
-        if (!nameChanged && !passwordChanged) {
+        if (!nameChanged && !pwdChanged) {
             Toast.makeText(this, "Дані не змінено", Toast.LENGTH_SHORT).show()
             return
         }
-
-        // Перевірка мінімальної довжини (тільки якщо дані змінюються)
         if (nameChanged && newName.length < 3) {
-            Toast.makeText(this, "Ім'я повинно містити щонайменше 3 символи", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Ім’я має бути ≥3 символів", Toast.LENGTH_SHORT).show()
             return
         }
-        if (passwordChanged && newPassword.length < 6) {
-            Toast.makeText(this, "Пароль повинен містити щонайменше 6 символів", Toast.LENGTH_SHORT).show()
+        if (pwdChanged && newPwd.length < 6) {
+            Toast.makeText(this, "Пароль має бути ≥6 символів", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Якщо зміни стосуються імені, оновлюємо його
         if (nameChanged) {
             db.collection("users").document(currentUser.uid)
                 .update("name", newName)
                 .addOnSuccessListener {
                     originalName = newName
-                    Toast.makeText(this, "Ім'я оновлено!", Toast.LENGTH_SHORT).show()
-                    // Якщо крім імені змінився ще й пароль, запускаємо оновлення пароля після успіху оновлення імені
-                    if (passwordChanged) {
-                        updatePassword(newPassword)
-                    }
+                    Toast.makeText(this, "Ім’я оновлено", Toast.LENGTH_SHORT).show()
+                    if (pwdChanged) updatePassword(newPwd)
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(this, "Помилка при оновленні імені: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,
+                        "Помилка оновлення імені: ${e.message}",
+                        Toast.LENGTH_SHORT).show()
                 }
-        } else if (passwordChanged) {
-            // Якщо змінився тільки пароль
-            updatePassword(newPassword)
+        } else if (pwdChanged) {
+            updatePassword(newPwd)
         }
     }
 
     private fun updatePassword(newPassword: String) {
-        val hasEmailProvider = currentUser.providerData.any { it.providerId == EmailAuthProvider.PROVIDER_ID }
-        if (!hasEmailProvider) {
-            // Якщо користувач увійшов через Google і ще не має email/password, виконуємо зв'язування
-            val credential = EmailAuthProvider.getCredential(currentUser.email!!, newPassword)
-            currentUser.linkWithCredential(credential)
+        val hasEmail = currentUser.providerData.any {
+            it.providerId == EmailAuthProvider.PROVIDER_ID
+        }
+        if (!hasEmail) {
+            // зв’язуємо пароль із Google‑акаунтом
+            val cred = EmailAuthProvider.getCredential(currentUser.email!!, newPassword)
+            currentUser.linkWithCredential(cred)
                 .addOnSuccessListener {
                     db.collection("users").document(currentUser.uid)
                         .update("password", newPassword)
                         .addOnSuccessListener {
                             originalPassword = newPassword
-                            Toast.makeText(this, "Пароль встановлено!", Toast.LENGTH_SHORT).show()
-                        }
-                        .addOnFailureListener { e ->
-                            Toast.makeText(this, "Помилка при встановленні пароля: ${e.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Пароль встановлено", Toast.LENGTH_SHORT).show()
                         }
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(this, "Помилка при встановленні пароля: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,
+                        "Помилка встановлення пароля: ${e.message}",
+                        Toast.LENGTH_SHORT).show()
                 }
         } else {
-            // Якщо акаунт вже має email/password, оновлюємо пароль стандартним способом
             currentUser.updatePassword(newPassword)
                 .addOnSuccessListener {
                     db.collection("users").document(currentUser.uid)
                         .update("password", newPassword)
                         .addOnSuccessListener {
                             originalPassword = newPassword
-                            Toast.makeText(this, "Пароль змінено!", Toast.LENGTH_SHORT).show()
-                        }
-                        .addOnFailureListener { e ->
-                            Toast.makeText(this, "Помилка при оновленні пароля: ${e.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Пароль змінено", Toast.LENGTH_SHORT).show()
                         }
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(this, "Помилка при зміні пароля: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,
+                        "Помилка зміни пароля: ${e.message}",
+                        Toast.LENGTH_SHORT).show()
                 }
         }
     }
 
     private fun deleteUserAccount() {
-        db.collection("users").document(currentUser.uid).delete()
+        db.collection("users").document(currentUser.uid)
+            .delete()
             .addOnSuccessListener {
                 currentUser.delete()
                     .addOnSuccessListener {
@@ -238,41 +265,32 @@ class SettingsActivity : AppCompatActivity() {
                         startActivity(Intent(this, LoginActivity::class.java))
                         finish()
                     }
-                    .addOnFailureListener { e -> Toast.makeText(this, "Помилка: ${e.message}", Toast.LENGTH_SHORT).show() }
             }
-            .addOnFailureListener { e -> Toast.makeText(this, "Помилка: ${e.message}", Toast.LENGTH_SHORT).show() }
+            .addOnFailureListener { e ->
+                Toast.makeText(this,
+                    "Помилка: ${e.message}",
+                    Toast.LENGTH_SHORT).show()
+            }
     }
 
-    private fun linkDiscord() {
-        Toast.makeText(this, "Прив'язка Discord не реалізована", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun linkTelegram() {
-        Toast.makeText(this, "Прив'язка Telegram не реалізована", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
-    }
-
-    private fun showConfirmationDialog(action: String, onConfirm: () -> Unit) {
-        val message = if (action == "оновлення") "Підтвердіть оновлення даних." else "Підтвердіть видалення акаунту."
+    private fun showConfirmationDialog(action: String, onConfirm: ()->Unit) {
+        val message = if (action == "оновлення")
+            "Підтвердіть оновлення даних."
+        else
+            "Підтвердіть видалення акаунту."
         AlertDialog.Builder(this, R.style.CustomDialogStyle02)
             .setTitle("Підтвердіть дію")
             .setMessage(message)
             .setPositiveButton("Підтвердити") { _, _ -> onConfirm() }
             .setNegativeButton("Назад", null)
             .show()
-
     }
 
-    // При натисканні поза полями вводу ховаємо клавіатуру
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        currentFocus?.let { view ->
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
-            view.clearFocus()
+        currentFocus?.let { v ->
+            (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                .hideSoftInputFromWindow(v.windowToken, 0)
+            v.clearFocus()
         }
         return super.dispatchTouchEvent(ev)
     }

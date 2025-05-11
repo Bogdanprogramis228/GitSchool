@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="90dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@color/transparent">
+
+    <ImageView
+        android:id="@+id/genreImageView"
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/genreTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/genreImageView"
+        android:gravity="center"
+        android:text="Назва Жанру"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

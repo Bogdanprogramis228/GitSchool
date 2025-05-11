@@ -61,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
             val email = emailField.text.toString().trim()
             val password = passwordField.text.toString().trim()
 
+            // --- Валідація полів (залишається без змін) ---
             if (email.isEmpty() || password.isEmpty()) {
                 showErrorMessage(loginMessage, "Введіть свою пошту та пароль!")
                 return@setOnClickListener
@@ -69,19 +70,34 @@ class LoginActivity : AppCompatActivity() {
                 showErrorMessage(loginMessage, "Невірне введення пошти. Спробуйте ще раз.")
                 return@setOnClickListener
             }
-            if (password.length !in 6..20) {
+            if (password.length !in 6..20) { // Або ваші правила довжини
                 showErrorMessage(loginMessage, "Пароль має містити від 6 до 20 символів.")
                 return@setOnClickListener
             }
+            // -------------------------------------------
 
+            // --- Вхід через Email/Password ---
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                        // Вхід успішний
                         val user = auth.currentUser
                         if (user != null) {
-                            // Перевіряємо, чи пошта підтверджена
+
+                            // --- ЗМІНА ЛОГІКИ ТУТ ---
+                            // 1. Спочатку перевіряємо, чи це адміністратор
+                            if (user.email == "admin@domain.com") {
+                                // Якщо це адмін, одразу переходимо в AdminActivity
+                                Log.d("LoginActivity", "Admin user logged in. Skipping email verification check.")
+                                startActivity(Intent(this, AdminActivity::class.java))
+                                finish() // Закриваємо LoginActivity
+                                return@addOnCompleteListener // Важливо вийти тут, щоб не виконувати подальші перевірки
+                            }
+
+                            // 2. Якщо це НЕ адмін, перевіряємо підтвердження пошти
                             if (!user.isEmailVerified) {
-                                // Якщо не підтверджена — надсилаємо лист повторно
+                                // Якщо пошта НЕ підтверджена - надсилаємо лист повторно
+                                Log.w("LoginActivity", "User email not verified: ${user.email}")
                                 user.sendEmailVerification()
                                     .addOnSuccessListener {
                                         showErrorMessage(loginMessage, "Будь ласка, підтвердьте свою пошту! Лист повторно надіслано на: ${user.email}")
@@ -89,23 +105,28 @@ class LoginActivity : AppCompatActivity() {
                                     .addOnFailureListener { e ->
                                         showErrorMessage(loginMessage, "Не вдалося відправити лист підтвердження: ${e.message}")
                                     }
+                                // Не переходимо далі, користувач має підтвердити пошту
                                 return@addOnCompleteListener
                             }
 
-                            // Якщо пошта підтверджена
-                            if (user.email == "admin@domain.com") {
-                                startActivity(Intent(this, AdminActivity::class.java))
-                            } else {
-                                // При успішному вході – запис даних у Firestore, якщо потрібно
-                                storeUserDataIfNotExist(user)
-                                startActivity(Intent(this, SecondActivity::class.java))
-                            }
-                            finish()
+                            // 3. Якщо це звичайний користувач І пошта підтверджена
+                            Log.d("LoginActivity", "Regular user logged in and verified: ${user.email}")
+                            storeUserDataIfNotExist(user) // Зберігаємо дані, якщо потрібно
+                            startActivity(Intent(this, SecondActivity::class.java))
+                            finish() // Закриваємо LoginActivity
+                            // --- КІНЕЦЬ ЗМІНИ ЛОГІКИ ---
+
+                        } else {
+                            // Малоймовірно, але обробимо випадок, коли user == null після успішного task
+                            Log.e("LoginActivity", "Login successful but currentUser is null.")
+                            showErrorMessage(loginMessage, "Помилка отримання даних користувача.")
                         }
                     } else {
-                        FirebaseFirestore.setLoggingEnabled(true)
+                        // Вхід НЕ успішний
+                        // FirebaseFirestore.setLoggingEnabled(true) // Увімкнення логування Firestore тут недоречне
                         Log.e("LoginActivity", "Login failed: ${task.exception?.message}")
-                        showErrorMessage(loginMessage, "Помилка авторизації. Обліковий запис не знайдено!")
+                        // Показуємо більш загальну помилку, щоб не розкривати деталі
+                        showErrorMessage(loginMessage, "Неправильна пошта або пароль.")
                     }
                 }
         }
